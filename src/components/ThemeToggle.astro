@@ -1,0 +1,107 @@
+---
+import SunIcon from "./icons/SunIcon.astro";
+import MoonIcon from "./icons/MoonIcon.astro";
+import SystemIcon from "./icons/SystemIcon.astro";
+
+const THEMES = ["Light", "Dark", "System"];
+---
+
+<div class="relative ml-3">
+    <button
+        id="theme-toggle-btn"
+        class="flex hover:scale-110 h-full justify-center items-center"
+    >
+        <SunIcon
+            id="light"
+            class="theme-toggle-icon absolute size-5 text-gray-700 dark:text-white/80"
+        />
+        <MoonIcon
+            id="dark"
+            class="theme-toggle-icon absolute size-5 text-gray-700 dark:text-white/80"
+        />
+        <SystemIcon
+            id="system"
+            class="theme-toggle-icon absolute size-5 text-gray-700 dark:text-white/80"
+        />
+    </button>
+    <div
+        id="themes-menu"
+        class="top-8 absolute right-2 hidden text-black bg-neutral-200/70 font-medium rounded-lg text-sm dark:text-white dark:bg-gray-800/90 border-2 border-gray-500"
+    >
+        <ul>
+            {
+                THEMES.map((theme) => (
+                    <li class="themes-menu-option  hover:bg-white/80 dark:hover:bg-gray-700 rounded-md px-3 py-2">
+                        {theme}
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>
+
+<script is:inline>
+    let remove = null;
+    const themeToggleBtn = document.getElementById("theme-toggle-btn");
+    const themesMenu = document.getElementById("themes-menu");
+    const themesMenuOption = document.querySelectorAll(".themes-menu-option");
+    const themesMenuIcon = document.querySelectorAll(".theme-toggle-icon");
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const getThemePreference = () => {
+        if (typeof localStorage !== "undefined") {
+            return localStorage.getItem("Theme") ?? "system";
+        }
+
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    };
+
+    const updateIcon = (themePreference) => {
+        themesMenuIcon.forEach((element) => {
+            element.style.transform =
+                element.id === themePreference ? "scale(1)" : "scale(0)";
+        });
+    };
+
+    const updateTheme = () => {
+        if (remove != null) {
+            remove();
+        }
+        mediaQuery.addEventListener("change", updateTheme);
+        remove = () => {
+            mediaQuery.removeEventListener("change", updateTheme);
+        };
+
+        const themePreference = getThemePreference();
+        const isDark =
+            themePreference === "dark" ||
+            (themePreference === "system" && mediaQuery.matches);
+
+        updateIcon(themePreference);
+        document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+    };
+    updateTheme();
+
+    document.addEventListener("click", () => {
+        themesMenu.classList.remove("inline");
+        themesMenu.classList.add("hidden");
+    });
+
+    themeToggleBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        themesMenu.classList.toggle("inline");
+        themesMenu.classList.toggle("hidden");
+    });
+
+    themesMenuOption.forEach((theme) => {
+        theme.addEventListener("click", (e) => {
+            localStorage.setItem(
+                "Theme",
+                e.target.innerText.toLowerCase().trim(),
+            );
+            updateTheme();
+        });
+    });
+</script>

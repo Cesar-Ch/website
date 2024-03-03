@@ -1,0 +1,44 @@
+---
+import ThemeToogle from './ThemeToggle.astro'
+const NAVITEMS = [
+    {
+        title: "Inicio",
+        label: "Inicio",
+        url: "/#home",
+    },
+    {
+        title: "Proyectos",
+        label: "Proyectos",
+        url: "/#projects",
+    },
+    {
+        title: "Contacto",
+        label: "Contacto",
+        url:"/#contact"
+    }
+];
+---
+
+<header
+    class="h-14 flex justify-center items-center mx-auto pt-2 fixed top-0 w-full z-10"
+>
+    <nav
+        class="w-full md:w-3/4 lg:w-1/2 xl:w-2/5 h-full
+    border-2 border-gray-500 rounded-full md:px-6 px-3 py-1
+    flex flex-wrap flex-row items-center justify-center
+    bg-neutral-200/70 dark:bg-gray-800/50 backdrop-blur-2xl"
+    >
+        {
+            NAVITEMS.map((item) => (
+                <a
+                    class="relative dark:hover:bg-white/15 p-1 rounded-full px-2 sm:px-3 transition ease-in text-sm sm:text-base capitalize hover:bg-white/80"
+                    href={item.url}
+                    aria-label={item.label}
+                >
+                    {item.title}
+                </a>
+            ))
+        }
+        <ThemeToogle />
+    </nav>
+</header>
