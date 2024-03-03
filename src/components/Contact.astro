@@ -71,6 +71,9 @@
     const scriptURL =
         "https://script.google.com/macros/s/AKfycbxX8J7XpSXzQfwz37pWEEc3RwT-KPkagr-B18d4QHppMFgaOZI_84bAP4CmEKcneXiALg/exec";
     const name = document.getElementById("name");
+    const lastname = document.getElementById("lastname");
+    const email = document.getElementById("email");
+    const message = document.getElementById("message");
 
     const form = document.forms["contact-form"];
 
@@ -84,6 +87,9 @@
             )
             .then(() => {
                 name.value = "";
+                lastname.value = "";
+                email.value = "";
+                message.value = "";
             })
             .catch((error) => console.error("Error!", error.message));
     });
