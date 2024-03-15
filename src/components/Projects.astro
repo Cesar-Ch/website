@@ -8,6 +8,7 @@ import ExpressIcon from "./icons/ExpressIcon.astro";
 import AstroIcon from "./icons/AstroIcon.astro";
 import ThreeJSIcon from "./icons/ThreeJSIcon.astro";
 import WebIcon from "./icons/WebIcon.astro";
+import SQLiteIcon from "./icons/SQLiteIcon.astro";
 
 const TAGS = {
     VITE: {
@@ -40,6 +41,11 @@ const TAGS = {
         class: "bg-[#303030] text-white",
         icon: ThreeJSIcon,
     },
+    SQLITE: {
+        name: "SQLite",
+        class: "bg-[#303030] text-white",
+        icon: SQLiteIcon,
+    },
 };
 
 const PROJECTS = [
@@ -60,15 +66,15 @@ const PROJECTS = [
     {
         title: "Minesweeper",
         description: "",
-        link: "https://cesar-ch.github.io/minesweeper/",
+        link: "https://cesarch-minesweeper.vercel.app/game/",
         github: "https://github.com/Cesar-Ch/minesweeper",
-        image: "projects/minesweeper.webp",
-        tags: [TAGS.ASTRO, TAGS.REACT, TAGS.TAILWIND],
+        image: "projects/minesweeper.png",
+        tags: [TAGS.ASTRO, TAGS.REACT, TAGS.TAILWIND, TAGS.SQLITE],
     },
 ];
 ---
 
-<div class="flex flex-col  gap-y-16 w-full">
+<div class="flex flex-col gap-y-16 w-full">
     {
         PROJECTS.map(({ title, description, tags, image, github, link }) => (
             <article class="flex flex-col md:flex-row justify-between p-4 w-full gap-4">
