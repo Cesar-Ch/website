@@ -66,7 +66,7 @@ const LANGUAGES = [
         ".language-toggle-icon",
     );
 
-    const languageLS = localStorage.getItem("Language") ?? "spanish";
+    const currentLanguage = document.documentElement.lang === "es" ? "spanish" : "english";
 
     const updateLanguage = (languageSelected) => {
         languagesMenuIcon.forEach((element) => {
@@ -74,7 +74,7 @@ const LANGUAGES = [
                 element.id === languageSelected ? "scale(1)" : "scale(0)";
         });
     };
-    updateLanguage(languageLS);
+    updateLanguage(currentLanguage);
 
     document.addEventListener("click", () => {
         languagesMenu.classList.remove("inline");
@@ -89,8 +89,6 @@ const LANGUAGES = [
 
     languagesMenuOption.forEach((language) => {
         language.addEventListener("click", (e) => {
-            console.log(e);
-            localStorage.setItem("Language", e.target.id.toLowerCase().trim());
             updateLanguage(e.target.id.toLowerCase().trim());
         });
     });

@@ -23,7 +23,7 @@ const NAVITEMS = [
 ];
 
 const currentPath = Astro.url.pathname;
-console.log(currentPath)
+
 const navLanguages = (url: string) => {
     const newPath = `/website/en${url}`;
     if (currentPath == "/website/en") {
