@@ -8,26 +8,26 @@ const NAVITEMS = [
     {
         title: `${i18n.NAV_HOME}`,
         label: `${i18n.NAV_HOME}`,
-        url: "/#home",
+        url: "#home",
     },
     {
         title: `${i18n.NAV_PROJECTS}`,
         label: `${i18n.NAV_PROJECTS}`,
-        url: "/#projects",
+        url: "#projects",
     },
     {
         title: `${i18n.NAV_CONTACT}`,
         label: `${i18n.NAV_CONTACT}`,
-        url: "/#contact",
+        url: "#contact",
     },
 ];
 
 const currentPath = Astro.url.pathname;
-
+console.log(currentPath)
 const navLanguages = (url: string) => {
-    const newPath = `en${url}`;
-    if (currentPath == "/en/") {
-        return `/en${url}`;
+    const newPath = `/website/en${url}`;
+    if (currentPath == "/website/en") {
+        return `/website/en${url}`;
     } else {
         return newPath;
     }
