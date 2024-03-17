@@ -6,10 +6,14 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+import { getI18N } from "../i18n/";
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={i18n.LANG}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />

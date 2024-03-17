@@ -1,0 +1,21 @@
+{
+    "LANG": "es",
+    "HOME_GREETING": "Hola, soy César",
+    "HOME_DESCRIPTION": "Desarrollador web interesado en contribuir a la comunidad, buscando oportunidades para aprender y crecer como profesional, mientras continúo mi viaje académico en Ingeniería de Sistemas.",
+    "NAV_HOME": "Inicio",
+    "NAV_PROJECTS": "Proyectos",
+    "NAV_CONTACT": "Contacto",
+    "NAV_LANGUAGE_SPAIN": "Español",
+    "NAV_LANGUAGE_ENGLISH": "Inglés",
+    "PROJECTS_TITLE": "Proyectos",
+    "PROJECTS_WEB": "Ir al sitio web",
+    "PROJECTS_GITHUB": "Ver código fuente",
+    "PROJECTS_PERIODIC_TABLE": "Tabla periodica",
+    "PROJECTS_MINESWEEPER": "Buscaminas",
+    "CONTACT_TITLE": "Contacto",
+    "CONTACT_FORM_FIRST_NAME": "Nombre",
+    "CONTACT_FORM_LAST_NAME": "Apellido",
+    "CONTACT_FORM_EMAIL": "Email",
+    "CONTACT_FORM_MESSAGE": "Mensaje",
+    "CONTACT_FORM_SEND": "Enviar"
+}

@@ -1,0 +1,21 @@
+{
+    "LANG": "en",
+    "HOME_GREETING": "Hi, I'm César",
+    "HOME_DESCRIPTION": "Web developer interested in contributing to the community, seeking opportunities to learn and grow as a professional, while continuing my academic journey in Systems Engineering.",
+    "NAV_HOME": "Home",
+    "NAV_PROJECTS": "Projects",
+    "NAV_CONTACT": "Contact",
+    "NAV_LANGUAGE_SPAIN": "Spanish",
+    "NAV_LANGUAGE_ENGLISH": "English",
+    "PROJECTS_TITLE": "Projects",
+    "PROJECTS_WEB": "Go to website",
+    "PROJECTS_GITHUB": "View code",
+    "PROJECTS_PERIODIC_TABLE": "Periodic Table",
+    "PROJECTS_MINESWEEPER": "Minesweeper",
+    "CONTACT_TITLE": "Contact",
+    "CONTACT_FORM_FIRST_NAME" : "First Name",
+    "CONTACT_FORM_LAST_NAME" : "Last Name",
+    "CONTACT_FORM_EMAIL" : "Email",
+    "CONTACT_FORM_MESSAGE" : "Message",
+    "CONTACT_FORM_SEND" : "Send"
+}

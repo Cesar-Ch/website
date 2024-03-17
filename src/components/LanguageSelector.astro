@@ -1,0 +1,97 @@
+---
+import SpainIcon from "./icons/flags/SpainIcon.astro";
+import USIcon from "./icons/flags/USIcon.astro";
+
+import { getI18N } from "../i18n/";
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+
+const LANGUAGES = [
+    {
+        id: "spanish",
+        language: `${i18n.NAV_LANGUAGE_SPAIN}`,
+        link: "/",
+    },
+    {
+        id: "english",
+        language: `${i18n.NAV_LANGUAGE_ENGLISH}`,
+        link: "/en",
+    },
+];
+---
+
+<div class="relative ml-8">
+    <button
+        id="language-toggle-btn"
+        class="flex hover:scale-110 h-full justify-center items-center"
+    >
+        <USIcon
+            id="english"
+            class="language-toggle-icon absolute size-5 text-gray-700 dark:text-white/80"
+        />
+        <SpainIcon
+            id="spanish"
+            class="language-toggle-icon absolute size-5 text-gray-700 dark:text-white/80"
+        />
+    </button>
+    <div
+        id="languages-menu"
+        class="top-8 absolute right-2 hidden text-black bg-neutral-200/70 font-medium rounded-lg text-sm dark:text-white dark:bg-gray-800/90 border-2 border-gray-500"
+    >
+        <ul>
+            {
+                LANGUAGES.map((language) => (
+                    <li class="hover:bg-white/80 dark:hover:bg-gray-700 rounded-md px-3 py-2">
+                        <a
+                            id={language.id}
+                            class="languages-menu-option"
+                            href={language.link}
+                        >
+                            {language.language}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>
+
+<script is:inline>
+    const languageToggleBtn = document.getElementById("language-toggle-btn");
+    const languagesMenu = document.getElementById("languages-menu");
+    const languagesMenuOption = document.querySelectorAll(
+        ".languages-menu-option",
+    );
+    const languagesMenuIcon = document.querySelectorAll(
+        ".language-toggle-icon",
+    );
+
+    const languageLS = localStorage.getItem("Language") ?? "spanish";
+
+    const updateLanguage = (languageSelected) => {
+        languagesMenuIcon.forEach((element) => {
+            element.style.transform =
+                element.id === languageSelected ? "scale(1)" : "scale(0)";
+        });
+    };
+    updateLanguage(languageLS);
+
+    document.addEventListener("click", () => {
+        languagesMenu.classList.remove("inline");
+        languagesMenu.classList.add("hidden");
+    });
+
+    languageToggleBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        languagesMenu.classList.toggle("inline");
+        languagesMenu.classList.toggle("hidden");
+    });
+
+    languagesMenuOption.forEach((language) => {
+        language.addEventListener("click", (e) => {
+            console.log(e);
+            localStorage.setItem("Language", e.target.id.toLowerCase().trim());
+            updateLanguage(e.target.id.toLowerCase().trim());
+        });
+    });
+</script>

@@ -9,6 +9,9 @@ import AstroIcon from "./icons/AstroIcon.astro";
 import ThreeJSIcon from "./icons/ThreeJSIcon.astro";
 import WebIcon from "./icons/WebIcon.astro";
 import SQLiteIcon from "./icons/SQLiteIcon.astro";
+import { getI18N } from "../i18n/";
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 
 const TAGS = {
     VITE: {
@@ -50,11 +53,11 @@ const TAGS = {
 
 const PROJECTS = [
     {
-        title: "Periodic Table",
+        title: `${i18n.PROJECTS_PERIODIC_TABLE}`,
         description: "",
         link: "https://cesar-ch.github.io/periodic-table/",
         github: "https://github.com/Cesar-Ch/periodic-table",
-        image: "projects/periodic-table.webp",
+        image: "/projects/periodic-table.webp",
         tags: [
             TAGS.VITE,
             TAGS.REACT,
@@ -64,14 +67,15 @@ const PROJECTS = [
         ],
     },
     {
-        title: "Minesweeper",
+        title: `${i18n.PROJECTS_MINESWEEPER}`,
         description: "",
         link: "https://cesarch-minesweeper.vercel.app/game/",
         github: "https://github.com/Cesar-Ch/minesweeper",
-        image: "projects/minesweeper.png",
+        image: "/projects/minesweeper.png",
         tags: [TAGS.ASTRO, TAGS.REACT, TAGS.TAILWIND, TAGS.SQLITE],
     },
 ];
+
 ---
 
 <div class="flex flex-col gap-y-16 w-full">
@@ -105,12 +109,12 @@ const PROJECTS = [
                         {github && (
                             <LinkButton href={github}>
                                 <GithubIcon class="size-4" />
-                                Ver código fuente
+                                {i18n.PROJECTS_GITHUB}
                             </LinkButton>
                         )}
                         <LinkButton href={link}>
                             <WebIcon class="size-4" />
-                            Ir al sitio web
+                            {i18n.PROJECTS_WEB}
                         </LinkButton>
                     </footer>
                 </div>
