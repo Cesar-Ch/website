@@ -1,37 +1,32 @@
 ---
-import SpainIcon from "./icons/flags/SpainIcon.astro";
-import USIcon from "./icons/flags/USIcon.astro";
-
 import { getI18N } from "../i18n/";
+import LanguageIcon from "./icons/LanguageIcon.astro";
 const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 
 const LANGUAGES = [
     {
-        id: "spanish",
-        language: `${i18n.NAV_LANGUAGE_SPAIN}`,
+        id: "es",
+        language: `${i18n.NAV_LANGUAGE_SPANISH}`,
         link: "/website",
     },
     {
-        id: "english",
+        id: "en",
         language: `${i18n.NAV_LANGUAGE_ENGLISH}`,
         link: "/website/en",
     },
 ];
+
+const otherlanguages = LANGUAGES.filter(e => e.id != i18n["LANG"])
 ---
 
-<div class="relative ml-8">
+<div class="relative ml-8 flex justify-center items-center">
     <button
         id="language-toggle-btn"
         class="flex hover:scale-110 h-full justify-center items-center"
     >
-        <USIcon
-            id="english"
-            class="language-toggle-icon absolute size-5 text-gray-700 dark:text-white/80"
-        />
-        <SpainIcon
-            id="spanish"
-            class="language-toggle-icon absolute size-5 text-gray-700 dark:text-white/80"
+        <LanguageIcon
+            class="language-toggle-icon absolute size-6 text-gray-700 dark:text-white/80"
         />
     </button>
     <div
@@ -40,7 +35,7 @@ const LANGUAGES = [
     >
         <ul>
             {
-                LANGUAGES.map((language) => (
+                otherlanguages.map((language) => (
                     <li class="hover:bg-white/80 dark:hover:bg-gray-700 rounded-md px-3 py-2">
                         <a
                             id={language.id}
@@ -62,19 +57,6 @@ const LANGUAGES = [
     const languagesMenuOption = document.querySelectorAll(
         ".languages-menu-option",
     );
-    const languagesMenuIcon = document.querySelectorAll(
-        ".language-toggle-icon",
-    );
-
-    const currentLanguage = document.documentElement.lang === "es" ? "spanish" : "english";
-
-    const updateLanguage = (languageSelected) => {
-        languagesMenuIcon.forEach((element) => {
-            element.style.transform =
-                element.id === languageSelected ? "scale(1)" : "scale(0)";
-        });
-    };
-    updateLanguage(currentLanguage);
 
     document.addEventListener("click", () => {
         languagesMenu.classList.remove("inline");
@@ -89,7 +71,6 @@ const LANGUAGES = [
 
     languagesMenuOption.forEach((language) => {
         language.addEventListener("click", (e) => {
-            updateLanguage(e.target.id.toLowerCase().trim());
         });
     });
 </script>
