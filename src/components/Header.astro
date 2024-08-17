@@ -2,36 +2,24 @@
 import { getI18N } from "../i18n/";
 const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
-import LanguageSelector from "./LanguageSelector.astro"
+import LanguageSelector from "./LanguageSelector.astro";
+import Link from "./Link.astro";
 import ThemeToogle from "./ThemeToggle.astro";
 const NAVITEMS = [
     {
         title: `${i18n.NAV_HOME}`,
-        label: `${i18n.NAV_HOME}`,
         url: "#home",
     },
     {
         title: `${i18n.NAV_PROJECTS}`,
-        label: `${i18n.NAV_PROJECTS}`,
         url: "#projects",
     },
     {
         title: `${i18n.NAV_CONTACT}`,
-        label: `${i18n.NAV_CONTACT}`,
         url: "#contact",
     },
 ];
 
-const currentPath = Astro.url.pathname;
-
-const navLanguages = (url: string) => {
-    const newPath = `/website/en${url}`;
-    if (currentPath == "/website/en") {
-        return `/website/en${url}`;
-    } else {
-        return newPath;
-    }
-};
 ---
 
 <header
@@ -45,15 +33,7 @@ const navLanguages = (url: string) => {
     >
         {
             NAVITEMS.map((item) => (
-                <a
-                    class="relative dark:hover:bg-white/15 p-1 rounded-full px-2 sm:px-3 transition ease-in text-sm sm:text-base capitalize hover:bg-white/80"
-                    href={
-                        i18n.LANG === "es" ? item.url : navLanguages(item.url)
-                    }
-                    aria-label={item.label}
-                >
-                    {item.title}
-                </a>
+                <Link href={item.url} title={item.title} />
             ))
         }
         <ThemeToogle />

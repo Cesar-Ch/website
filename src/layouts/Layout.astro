@@ -10,6 +10,7 @@ const { title } = Astro.props;
 import { getI18N } from "../i18n/";
 const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
+
 ---
 
 <!doctype html>
@@ -18,7 +19,7 @@ const i18n = getI18N({ currentLocale });
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="logo.jpg" />
+		<link rel="icon" type="image/svg+xml" href='/website/logo.jpg' />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
